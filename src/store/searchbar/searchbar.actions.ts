@@ -1,6 +1,7 @@
 import axios, {AxiosResponse} from 'axios';
-import {Dispatch, Action} from 'redux';
+import {Dispatch} from 'redux';
 import { SearchBarAction, Types, Data } from './types';
+import { parseError } from '../utils';
 
 
 
@@ -12,38 +13,41 @@ export const onInputChange = (e: React.ChangeEvent<HTMLInputElement>): SearchBar
     }
 };
 
-export const onFormSubmit = (e: React.FormEvent<HTMLFormElement>, value: string): AsyncAction | SearchBarAction => {
+export const onFormSubmit = (e: React.SyntheticEvent, value: string): AsyncAction | SearchBarAction => {
     const acces_key = 'BpslQNxqHYJPSxnqRpQ3h8oK56dxVnGqZZ6z7nvzx2Y';
     const URL = 'https://api.unsplash.com/search/photos';
-    const query = value;
     return async (dispatch: Dispatch) => {
         e.preventDefault();
+        
         dispatch({ type: Types.SEARCHBAR_FORM_LOADING })
+        const errors: {[key:string]:any} = {};
+        if(value.length < 1) errors.search = 'Search field is empty, please enter value...';
+        if(Object.keys(errors).length) {
+            return parseError(errors, dispatch);
+        }
         try {
-            const { data } : AxiosResponse<Data> = await axios.get(`${URL}?per_page=100&quer=${query}`, { headers:{ 
+            const { data } : AxiosResponse<Data> = await axios.get(`${URL}?per_page=100&query=${value}`, { headers:{ 
                 Authorization: `Client-ID ${acces_key}`
             }});
+
+            if(data.results.length < 1) {
+                errors.results = 'No results found';
+                parseError(errors, dispatch);
+            }
             dispatch({ type: Types.SEARCHBAR_FORM_SUBMIT_SUCCESS, data })
         }
         catch(error) {
-            let data;
-      
-        if (typeof error === 'object' && error.hasOwnProperty('response')) {
-            data = JSON.stringify(error.response.data)
-            console.log(data)
-        } else if (typeof error === 'object') {
-            console.log(error);
-            data = JSON.stringify(error)
-        } else {
-            console.log(error);
-            data = error
-        }
-        dispatch({
-            type: Types.SHOW_UNEXPECTED_ERROR,
-            data
-        })
+        
+        parseError(error, dispatch);
           
         }
+    }
+}
+
+export const saveKeyword = (keyword: string): SearchBarAction => {
+    return {
+        type: Types.SEARCHBAR_SAVED_NEW_KEYWORD,
+        keyword
     }
 }
  

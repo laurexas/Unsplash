@@ -1,7 +1,13 @@
 .queriesContainer {
-	width: 20%;
+	width: 10%;
 	margin-top: 30px;
 	display: flex;
 	flex-direction: column;
-	background: pink;
+	text-align: center;
+	.heading {
+		font-size: 24px;
+	}
+	p {
+		cursor: pointer;
+	}
 }

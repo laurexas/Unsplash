@@ -4,7 +4,7 @@ import Input from '../UI/Input/Input';
 import Button from '../UI/Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import {getSearchbarReducer } from '../../store/searchbar/searchbar.reducer';
-import { onFormSubmit } from '../../store/searchbar/searchbar.actions';
+import { onFormSubmit, saveKeyword } from '../../store/searchbar/searchbar.actions';
 
 
 const Searchbar = ():JSX.Element => {
@@ -22,7 +22,7 @@ const Searchbar = ():JSX.Element => {
                 <Button className={style.searchBtn}>Search</Button>
             </form>
             <div className={style.saveContainer}>
-                <Button className={style.saveBtn}>Save</Button>
+                <Button className={style.saveBtn} onClick={() => dispatch(saveKeyword(search))}>Save</Button>
             </div>
         </div>
     )

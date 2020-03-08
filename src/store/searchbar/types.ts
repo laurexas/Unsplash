@@ -1,4 +1,5 @@
 export enum Types {
+    SEARCHBAR_SAVED_NEW_KEYWORD = 'SEARCHBAR_SAVED_NEW_KEYWORD',
     SEARCHBAR_ON_INPUT_CHANGE = 'SEARCHBAR_ON_INPUT_CHANGE',
     SEARCHBAR_FORM_LOADING = 'SEARCHBAR_FORM_LOADING',
     SEARCHBAR_FORM_ERROR = 'SEARCHBAR_FORM_ERROR',
@@ -12,6 +13,11 @@ export interface SearchBarOnInputChangeAction {
     type: Types.SEARCHBAR_ON_INPUT_CHANGE,
     name: string,
     value: string
+}
+
+export interface SearchbarSavedKeyword {
+    type: Types.SEARCHBAR_SAVED_NEW_KEYWORD,
+    keyword: string
 }
 
 export interface SearchBarFormLoadingAction {
@@ -35,6 +41,7 @@ export type SearchBarAction =
    | SearchBarFormLoadingAction
    | SearchBarFormErrorsAction
    | SearchBarFormSubmitAction
+   | SearchbarSavedKeyword
  
 
 

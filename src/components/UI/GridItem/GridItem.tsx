@@ -7,8 +7,8 @@ import { useSelector } from 'react-redux';
 const Item = () => {
     const { data } = useSelector(getSearchbarReducer);
     
-    const images = data?.results.map(item => {
-        return <img src={`${item.urls.small}`} alt={`${item.description}`} />
+    const images = data?.results.map((item,idx) => {
+        return <img key={idx} src={`${item.urls.small}`} alt={`${item.description}`} />
     })
 
     
