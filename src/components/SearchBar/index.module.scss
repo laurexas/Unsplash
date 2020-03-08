@@ -1,0 +1,36 @@
+@import '../../styles/utils/vars';
+
+.searchBar {
+	width: 100%;
+	display: flex;
+	background-color: $white;
+	padding: 20px 0;
+	border-color: rgba(0, 0, 0, .1);
+	border-top-style: solid;
+	border-top-width: 1px;
+	justify-content: center;
+	align-items: center;
+	box-shadow: 0 4px 13px -3px rgba(0, 0, 0, 0.10196);
+	.searchForm {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+	}
+	.searchBtn {
+		background: $primary2;
+		color: $white;
+	}
+	.saveContainer {
+		margin-right: 40px;
+		.saveBtn {
+			background-color: $white;
+			border: 1px solid $grey2;
+			transition: opacity .15s ease-in;
+			font-weight: normal;
+			&:hover {
+				opacity: 0.5;
+			}
+		}
+	}
+}

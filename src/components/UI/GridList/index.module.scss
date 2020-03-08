@@ -1,0 +1,12 @@
+.list {
+	width: 80%;
+	margin-top: 30px;
+	display: flex;
+	flex-wrap: wrap;
+	.item {
+		width: 18%;
+		height: 70px;
+		background-color: blue;
+		margin: 10px;
+	}
+}

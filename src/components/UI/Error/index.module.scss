@@ -1,0 +1,43 @@
+@import "../../../styles/utils/vars";
+
+.backdrop {
+	position: fixed;
+	z-index: 10;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, .5);
+	top: 0;
+	left: 0;
+}
+.modal {
+	position: fixed;
+	z-index: 150;
+	width: 350px;
+	min-height: 150px;
+	background: #fff;
+	border-radius: 4px;
+	top: 45%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	padding: 15px;
+	box-sizing: border-box;
+	text-align: center;
+	box-shadow: 0 0 5px #888;
+	.heading {
+		border-bottom: 1px solid $primary2;
+		display: inline-block;
+		width: auto;
+		font-size: 18px;
+	}
+	.desc {
+		font-size: 14px;
+		margin-top: 10px;
+		font-weight: 300;
+		overflow-wrap: break-word;
+	}
+	.button {
+		margin-top: 10px;
+		background: $primary2;
+		color: $white;
+	}
+}
