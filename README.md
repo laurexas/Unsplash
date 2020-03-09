@@ -5,6 +5,7 @@
 This project was created using REACT.JS framework with REACT HOOKS API, Typescript, Redux for state management and SCSS modules for styling.
 
 All pictures are fetched from Unsplash API. More information about Unsplash API and how it works you can find here: https://unsplash.com/developers
+Live preview: https://laurexas.github.io/unsplash/
 
 ### Project functionality
 
