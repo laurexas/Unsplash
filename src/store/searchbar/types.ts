@@ -4,6 +4,7 @@ export enum Types {
     SEARCHBAR_FORM_LOADING = 'SEARCHBAR_FORM_LOADING',
     SEARCHBAR_FORM_ERROR = 'SEARCHBAR_FORM_ERROR',
     SEARCHBAR_FORM_SUBMIT_SUCCESS = 'SEARCHBAR_FORM_SUBMIT_SUCCESS',
+    CLEAR_SAVED_QUERY = 'CLEAR_SAVED_QUERY',
     SHOW_UNEXPECTED_ERROR = 'SHOW_UNEXPECTED_ERROR',
     HIDE_UNEXPECTED_ERROR = 'HIDE_UNEXPECTED_ERROR'
 }
@@ -13,6 +14,11 @@ export interface SearchBarOnInputChangeAction {
     type: Types.SEARCHBAR_ON_INPUT_CHANGE,
     name: string,
     value: string
+}
+
+export interface SavedQueryClear {
+    type: Types.CLEAR_SAVED_QUERY,
+    index: number
 }
 
 export interface SearchbarSavedKeyword {
@@ -42,6 +48,7 @@ export type SearchBarAction =
    | SearchBarFormErrorsAction
    | SearchBarFormSubmitAction
    | SearchbarSavedKeyword
+   | SavedQueryClear
  
 
 

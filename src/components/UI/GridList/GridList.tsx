@@ -7,12 +7,17 @@ import { useSelector } from 'react-redux';
 
 
 const List = () => {
-    const { loading } = useSelector(getSearchbarReducer);
+    const { loading, search } = useSelector(getSearchbarReducer);
 
     if(loading) return <Loader loading={true}/>
-    
+
     return (
         <div className={style.list}>
+            <div className={style.listTitle}>
+                <h1>
+                    {search}
+                </h1>
+            </div>
             <Item />
         </div>
     )

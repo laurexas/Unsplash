@@ -34,9 +34,13 @@ export default (state=initialState, action:SearchBarAction) => {
             return {...state, data: action.data, loading:false}
         }
         case Types.SEARCHBAR_SAVED_NEW_KEYWORD: {
-            let array : string[] = state.keywords;
-            array.push(action.keyword)
-            return {...state, keywords: array}
+            const keywordCopy : string[] = state.keywords;
+            keywordCopy.push(action.keyword)
+            return {...state, keywords: keywordCopy}
+        }
+        case Types.CLEAR_SAVED_QUERY: {
+            const filteredKeywordArray = state.keywords.filter((item, idx) => idx !== action.index ? item : null  )
+            return {...state, keywords: filteredKeywordArray}
         }
         default :
           return state

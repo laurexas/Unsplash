@@ -26,7 +26,7 @@ export const onFormSubmit = (e: React.SyntheticEvent, value: string): AsyncActio
             return parseError(errors, dispatch);
         }
         try {
-            const { data } : AxiosResponse<Data> = await axios.get(`${URL}?per_page=100&query=${value}`, { headers:{ 
+            const { data } : AxiosResponse<Data> = await axios.get(`${URL}?per_page=30&query=${value}`, { headers:{ 
                 Authorization: `Client-ID ${acces_key}`
             }});
 
@@ -48,6 +48,13 @@ export const saveKeyword = (keyword: string): SearchBarAction => {
     return {
         type: Types.SEARCHBAR_SAVED_NEW_KEYWORD,
         keyword
+    }
+}
+
+export const clearKeywords = (index:number):SearchBarAction => {
+    return {
+        type:Types.CLEAR_SAVED_QUERY,
+        index
     }
 }
  

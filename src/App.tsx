@@ -1,18 +1,12 @@
 import React from 'react';
-import Searchbar from './components/SearchBar/Searchbar';
-import Body from './components/Grid/Grid';
-import Error from './components/UI/Error/Error';
+import Application from './components/Application/Application';
 
 
 
 function App() {
   return (
     <div className="App">
-      <header>
-        <Searchbar/>
-      </header>
-      <Body/>
-      <Error/>
+      <Application />
     </div>
   );
 }

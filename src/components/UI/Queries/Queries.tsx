@@ -2,7 +2,7 @@ import React from 'react';
 import style from './index.module.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import { getSearchbarReducer } from '../../../store/searchbar/searchbar.reducer';
-import { onFormSubmit } from '../../../store/searchbar/searchbar.actions';
+import { onFormSubmit, clearKeywords } from '../../../store/searchbar/searchbar.actions';
 
 
 
@@ -12,7 +12,7 @@ const Queries = () => {
     const dispatch = useDispatch();
 
     const renderKeywords = () => {
-        return keywords?.map(item => <p key={item} onClick={(e) => dispatch(onFormSubmit(e, item))}>{item}</p>);
+        return keywords?.map((item,idx) => <span className={style.queryContainer}><p key={item} onClick={(e) => dispatch(onFormSubmit(e, item))}>{item}</p><button onClick={() => dispatch(clearKeywords(idx))}>X</button></span> );
     }
 
     return (
