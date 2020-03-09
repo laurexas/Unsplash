@@ -16,6 +16,8 @@ export const onInputChange = (e: React.ChangeEvent<HTMLInputElement>): SearchBar
 export const onFormSubmit = (e: React.SyntheticEvent, value: string): AsyncAction | SearchBarAction => {
     const acces_key = 'BpslQNxqHYJPSxnqRpQ3h8oK56dxVnGqZZ6z7nvzx2Y';
     const URL = 'https://api.unsplash.com/search/photos';
+    const values = value.split(' ');
+
     return async (dispatch: Dispatch) => {
         e.preventDefault();
         
@@ -26,7 +28,7 @@ export const onFormSubmit = (e: React.SyntheticEvent, value: string): AsyncActio
             return parseError(errors, dispatch);
         }
         try {
-            const { data } : AxiosResponse<Data> = await axios.get(`${URL}?per_page=30&query=${value}`, { headers:{ 
+            const { data } : AxiosResponse<Data> = await axios.get(`${URL}?per_page=30&query=${values.map(item => item)}`, { headers:{ 
                 Authorization: `Client-ID ${acces_key}`
             }});
 
@@ -34,6 +36,7 @@ export const onFormSubmit = (e: React.SyntheticEvent, value: string): AsyncActio
                 errors.results = 'No results found';
                 parseError(errors, dispatch);
             }
+
             dispatch({ type: Types.SEARCHBAR_FORM_SUBMIT_SUCCESS, data })
         }
         catch(error) {

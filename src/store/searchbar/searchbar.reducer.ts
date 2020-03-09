@@ -35,8 +35,9 @@ export default (state=initialState, action:SearchBarAction) => {
         }
         case Types.SEARCHBAR_SAVED_NEW_KEYWORD: {
             const keywordCopy : string[] = state.keywords;
-            keywordCopy.push(action.keyword)
-            return {...state, keywords: keywordCopy}
+            const splittedKeyword = action.keyword.split(' ')
+            const newArray = keywordCopy.concat(splittedKeyword)
+            return {...state, keywords: newArray}
         }
         case Types.CLEAR_SAVED_QUERY: {
             const filteredKeywordArray = state.keywords.filter((item, idx) => idx !== action.index ? item : null  )
